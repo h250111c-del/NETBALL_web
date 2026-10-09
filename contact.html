@@ -1,0 +1,111 @@
+!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<tittle>Home|Dolphin Netball</tittle>
+<meta name="description"content="official website of the Dolphin Netball Club-events, gallery,features and how to join ">
+<link rel="stylesheet" href="Css/styles.css">
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="nav">
+                <a href="home.html"class="brand">
+                    Dolphin Netball
+                </a>
+                <button class="nav-toggle"id="navToggle"aria-label="Toggle navigation"aria-expended="false">nav-toggle </button>"
+                <ul class="nav-links"id="navLinks">
+                    <li> <a href="home.html">Home </a></li>
+                     <li> <a href="about.html"Class="active">about us</a></li>
+                      <li> <a href="activities.html">activities/events </a></li>
+                       <li> <a href="gallery.html">gallery</a></li>
+                        <li> <a href="contact.html">contact us </a></li>
+
+                </ul>
+            </nav>
+        </header>
+        <section class="hero" style="padding: 3.5rem 1.5rem 4.5rem;">
+            <p class="hero-eyebrow">Get In Touch</p>
+            <h1 style="font-size: clamp(2.6rem,7vw,4.5rem);">Join Or <span>Contact Us</span></h1>
+            <p class="lead">Whether you want to play Netball,sponsor a fixture or ask a question this form goes straight to the commitee</p>
+        </section>
+        <section>
+            <div class="container">
+                <form class="club-form" id="clubForm" method="POST" action="process_form.php" novalidate>
+                    <div class="field" id="field-full_name">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" placeholder="e.g. Merit Dunatuna" required>
+                        <p class="error">Please enter your full name.</p>
+                    </div>
+                    <div class="field" id="field-email">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="e.g. me@example.com" required>
+                        <p class="error">Please enter a valid email address.</p>
+                    </div>
+                    <div class="field" id="field-phone">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+263 7xxx xxx xx" required>
+                        <p class="error">Please enter a valid phone number.</p>
+                    </div>
+                    <div class="field" id="field-reason">
+                        <label for="reason">Reason for Contact</label>
+                        <select name="reason" id="reason" required>
+                            <option value="Join">I want to join as a player</option>
+                            <option value="General Inquiry">General enquiry</option>
+                            <option value="Sponsorship">Sponsorship or partnership</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message <span style="font-weight:400;">Optional</span></label>
+                        <textarea id="message" name="message" rows="4" placeholder="Anything else we should know?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">send</button>
+                </form>
+            </div>
+        </section>
+
+
+
+
+
+
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+         </div>
+         <h4>Dolphin Netball Club</h4>
+         <p>We Train Netballers from beginner to champion</p>
+            </div>
+            <div>
+                <h4>Get Involved</h4>
+             <ul>
+                <li><a href="contact.html">Join The Club</a></li>
+                  <li><a href="contact.html">General Enquires</a></li>
+             </ul>
+
+            </div>
+            <div>
+                <h4>Training Courts</h4>
+                <ul>
+                    <li>Dolphin Netball Club</li>
+                    <li>Sat &amp; 11:00-5:00pm</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy;<span id="year"></span>Dolphin Netball Club.Built for ISE2102:Web Technologies.by Merit Dunatuna
+        </div>
+    </div>
+        </footer>
+    <div class="lightbox" id="lightbox">
+<div class="lightbox-box">
+    <button class="lightbox-close" id="lightboxClose" aria-label="close">&times;</button>
+    <img id="lightboxImage" src="" alt="" />
+    <h3 id="lightboxTitle"></h3>
+    <p id="lightboxCaption"></p>
+</div>
+    </div>
+    <script src="Js/Js%20script.js"></script>
+    </body>
+</html>
