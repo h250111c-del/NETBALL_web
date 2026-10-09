@@ -1,22 +1,26 @@
 <?php
-define('DB_ENABLED', true);
-define('DB_HOST', 'fdb1029.awardspace.net');
-define('DB_USER', '4795301_netball');
-define('DB_PASS', 'password@merit1.');
-define('DB_NAME', '4795301_netball');
+function get_db_connection(): ?PDO
+{
+    $host = getenv('DB_HOST');
+    $name = getenv('DB_NAME');
+    $user = getenv('DB_USER');
+    $pass = getenv('DB_PASS');
 
-function get_db_connection() {
-    if (!DB_ENABLED) {
+    if ($host === false || $host === '' || $name === false || $name === ''
+        || $user === false || $user === '' || $pass === false || $pass === '') {
+        error_log('Dolphin Netball: Database configuration is incomplete.');
         return null;
     }
 
     try {
-        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+        $port = getenv('DB_PORT');
+        $dsn = 'mysql:host=' . $host . ';port=' . ($port === false || $port === '' ? '3306' : $port)
+            . ';dbname=' . $name . ';charset=utf8mb4';
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ];
-        return new PDO($dsn, DB_USER, DB_PASS, $options);
+        return new PDO($dsn, $user, $pass, $options);
     } catch (PDOException $e) {
         error_log('Dolphin Netball: Database connection failed: ' . $e->getMessage());
         return null;
