@@ -88,16 +88,6 @@ textarea {
   color: var(--ink);
 }
 
-.brand::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  margin-right: 0.7rem;
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.8);
-}
-
 .nav-links {
   list-style: none;
   display: flex;
