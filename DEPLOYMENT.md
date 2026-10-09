@@ -1,19 +1,9 @@
 # Deploying to Render
 
-This project uses PHP for its contact form, so deploy it as a Docker **Web Service**.
+This is the simplest setup: deploy the site as a **Static Site**. It does not need a database or environment variables.
 
-## 1. Prepare the database
+1. Push the project to GitHub.
+2. In Render, choose **New > Blueprint** and connect the repository.
+3. Render reads [`render.yaml`](./render.yaml), publishes the website, and gives you an `onrender.com` URL.
 
-Render does not provide a MySQL database for this service. Use a MySQL provider that accepts connections from Render, and make sure its network or IP allowlist permits connections from the deployed service.
-
-Create the `submissions` table by running [`sql/schema.sql`](./sql/schema.sql) against the database you will use. If your provider already created a database for you, run the table creation statements there and set `DB_NAME` to that database's actual name.
-
-## 2. Deploy the service
-
-1. Push this project to a GitHub repository.
-2. In Render, choose **New > Blueprint** and connect that repository.
-3. Render reads [`render.yaml`](./render.yaml), builds the Docker image, and prompts you for the database environment variables.
-4. Enter `DB_HOST`, `DB_NAME`, `DB_USER`, and `DB_PASS` from your MySQL provider. Keep the password in Render's environment settings, not in the repository. `DB_PORT` defaults to `3306`; change it if your provider uses another port.
-5. Apply the Blueprint and wait for the deployment to finish. Render will provide a public `onrender.com` URL.
-
-The site pages can be served without database settings, but the contact form requires a reachable MySQL database and the `submissions` table. Check the Render service logs for database configuration or connection errors if form submissions fail.
+The build publishes only the HTML, CSS, JavaScript, and images. PHP and database files are not deployed. The contact page explains that form submissions are not available yet; the form will need a backend or a form service to receive messages.
