@@ -73,10 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <header class="site-header">
         <nav class="nav">
-            <a href="home.html" class="brand">Harare Amateur Swimming</a>
+            <a href="index.html" class="brand">Harare Amateur Swimming</a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">nav-toggle</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">about us</a></li>
                 <li><a href="activities.html">activities/events</a></li>
                 <li><a href="gallery.html">gallery</a></li>
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <p style="text-align: center;">
                 <a href="contact.html" class="btn btn-ghost" style="border-color:var(--pitch); color:var(--pitch);">Back to Contact Form</a>
-                <a href="home.html" class="btn btn-primary">Back to Home</a>
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
             </p>
         </div>
     </section>
