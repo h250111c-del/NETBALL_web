@@ -4,11 +4,11 @@ $status  = '';
 $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $full_name = trim($_POST['full_name'] ?? '');
-    $email     = trim($_POST['email'] ?? '');
-    $phone     = trim($_POST['phone'] ?? '');
-    $reason    = trim($_POST['reason'] ?? '');
-    $user_msg  = trim($_POST['message'] ?? '');
+    $full_name = is_string($_POST['full_name'] ?? null) ? trim($_POST['full_name']) : '';
+    $email     = is_string($_POST['email'] ?? null) ? trim($_POST['email']) : '';
+    $phone     = is_string($_POST['phone'] ?? null) ? trim($_POST['phone']) : '';
+    $reason    = is_string($_POST['reason'] ?? null) ? trim($_POST['reason']) : '';
+    $user_msg  = is_string($_POST['message'] ?? null) ? trim($_POST['message']) : '';
 
     $errors = [];
     if ($full_name === '' || strlen($full_name) < 2) {
@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = 'A valid email is required.';
     }
-    if ($phone === '' || strlen($phone) > 15) {
-        $errors[] = 'A valid phone number is required.';
+    if ($phone !== '' && !preg_match('/^[0-9+ ()-]{7,20}$/', $phone)) {
+        $errors[] = 'Enter a valid phone number or leave the phone field blank.';
     }
-    if (!in_array($reason, ['General Inquiry', 'Join', 'Sponsorship'])) {
+    if (!in_array($reason, ['General Inquiry', 'Join', 'Sponsorship'], true)) {
         $errors[] = 'A valid reason is required.';
     }
 
@@ -67,13 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submission Result - Harare Amateur Swimming</title>
+    <title>Submission Result | Dolphin Netball Club</title>
     <link rel="stylesheet" href="Css/styles.css">
 </head>
 <body>
     <header class="site-header">
         <nav class="nav">
-            <a href="index.html" class="brand">Harare Amateur Swimming</a>
+            <a href="index.html" class="brand">Dolphin Netball Club</a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">nav-toggle</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Home</a></li>
@@ -86,12 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </header>
     <section style="padding: 4rem 0;">
         <div class="container" style="max-width: 620px;">
-            <div class="form-note <?php echo $status === 'success' ? 'success' : 'error'; ?>">
+            <div class="form-note <?php echo $status === 'success' ? 'success' : 'form-error'; ?>" role="status" aria-live="polite">
                 <?php echo htmlspecialchars($message); ?>
             </div>
 
             <p style="text-align: center;">
-                <a href="contact.html" class="btn btn-ghost" style="border-color:var(--pitch); color:var(--pitch);">Back to Contact Form</a>
+                <a href="contact.html" class="btn btn-ghost">Back to Contact Form</a>
                 <a href="index.html" class="btn btn-primary">Back to Home</a>
             </p>
         </div>
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer class="site-footer">
         <div class="container">
             <div class="footer-bottom">
-                &copy; <?php echo date("Y"); ?> Harare Amateur Swimming Club. Built for ISE 2102: Web Technologies. by Faith Chinhara
+                &copy; <?php echo date("Y"); ?> Dolphin Netball Club.
             </div>
         </div>
     </footer>

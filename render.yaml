@@ -1,6 +1,6 @@
 services:
   - type: web
     name: dolphin-netball
-    runtime: static
-    buildCommand: mkdir -p public && cp *.html public/ && cp -R Css Js images public/ && cp index.html public/home.html
-    staticPublishPath: ./public
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .

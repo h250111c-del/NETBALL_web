@@ -175,28 +175,9 @@ function setupGalleryLightbox() {
   });
 }
 
-function togglePositionField() {
-  const reasonSelect = document.getElementById('reason');
-  const positionField = document.getElementById('field-position');
-  const positionInput = document.getElementById('position');
-  if (!reasonSelect || !positionField || !positionInput) return;
-
-  const shouldShow = reasonSelect.value === 'join';
-  positionField.style.display = shouldShow ? 'grid' : 'none';
-  if (!shouldShow) {
-    positionInput.value = '';
-  }
-}
-
 function setupFormValidation() {
   const form = document.getElementById('clubForm');
   if (!form) return;
-
-  const reasonSelect = document.getElementById('reason');
-  if (reasonSelect) {
-    reasonSelect.addEventListener('change', togglePositionField);
-    togglePositionField();
-  }
 
   function showError(fieldWrapper) {
     if (fieldWrapper) fieldWrapper.classList.add('invalid');
@@ -221,8 +202,6 @@ function setupFormValidation() {
       valid = pattern.test(value);
     } else if (id === 'phone') {
       valid = value === '' || /^[0-9+ ()-]{7,20}$/.test(value);
-    } else if (id === 'position') {
-      valid = reasonSelect ? reasonSelect.value !== 'join' || value.length > 0 : true;
     }
 
     if (valid) {
@@ -234,7 +213,7 @@ function setupFormValidation() {
   }
 
   form.addEventListener('submit', function (event) {
-    const ids = ['full_name', 'email', 'phone', 'position'];
+    const ids = ['full_name', 'email', 'phone'];
     let isValid = true;
 
     ids.forEach(function (id) {
@@ -248,7 +227,7 @@ function setupFormValidation() {
     }
   });
 
-  ['full_name', 'email', 'phone', 'position'].forEach(function (id) {
+  ['full_name', 'email', 'phone'].forEach(function (id) {
     const input = document.getElementById(id);
     if (!input) return;
 

@@ -1,9 +1,10 @@
 # Deploying to Render
 
-This is the simplest setup: deploy the site as a **Static Site**. It does not need a database or environment variables.
+The contact form uses the PHP handler and MySQL database, so deploy this project as a **Docker Web Service**, not as a static site.
 
-1. Push the project to GitHub.
-2. In Render, choose **New > Blueprint** and connect the repository.
-3. Render reads [`render.yaml`](./render.yaml), publishes the website, and gives you an `onrender.com` URL.
+1. Create a MySQL database and run [`sql/schema.sql`](./sql/schema.sql).
+2. Push the project to GitHub and create a Render Blueprint using [`render.yaml`](./render.yaml).
+3. In the Render service's environment settings, set `DB_HOST`, `DB_NAME`, `DB_USER`, and `DB_PASS` to the database connection values. Set `DB_PORT` if the database uses a port other than `3306`.
+4. Deploy the service. The contact form posts to `process_form.php`; successful submissions are stored in the `submissions` table.
 
-The build publishes only the HTML, CSS, JavaScript, and images. PHP and database files are not deployed. The contact page explains that form submissions are not available yet; the form will need a backend or a form service to receive messages.
+Keep database credentials in Render's environment settings. Do not commit them to the repository. If the database is unreachable or the environment variables are missing, the form displays an error instead of reporting a false success.
