@@ -561,6 +561,41 @@ section {
   background: rgba(230, 107, 119, 0.14);
 }
 
+.form-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.form-popup[hidden] {
+  display: none;
+}
+
+.form-popup-card {
+  position: relative;
+  width: min(460px, 100%);
+  padding: 2.5rem 1.5rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #111;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.form-popup-card h2 {
+  margin-bottom: 0.75rem;
+  color: var(--primary-strong);
+}
+
+.form-popup-card p {
+  margin-bottom: 1.5rem;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

@@ -180,15 +180,27 @@ function setupFormValidation() {
   if (!form) return;
 
   const notice = document.getElementById('formNotice');
-  const params = new URLSearchParams(window.location.search);
-  const submissionStatus = params.get('submission');
-  const submissionMessage = params.get('message');
-  if (notice && submissionMessage && (submissionStatus === 'success' || submissionStatus === 'error')) {
-    notice.textContent = submissionMessage;
-    notice.classList.add(submissionStatus === 'success' ? 'success' : 'form-error');
-    notice.hidden = false;
-    window.history.replaceState(null, '', window.location.pathname + '#formNotice');
+  const noticeMessage = document.getElementById('formPopupMessage');
+  const closeNoticeButton = document.getElementById('closeFormPopup');
+  const confirmNoticeButton = document.getElementById('confirmFormPopup');
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  function closeNotice() {
+    if (!notice || notice.hidden) return;
+    notice.hidden = true;
+    if (submitButton) submitButton.focus();
   }
+
+  if (closeNoticeButton) closeNoticeButton.addEventListener('click', closeNotice);
+  if (confirmNoticeButton) confirmNoticeButton.addEventListener('click', closeNotice);
+  if (notice) {
+    notice.addEventListener('click', function (event) {
+      if (event.target === notice) closeNotice();
+    });
+  }
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeNotice();
+  });
 
   function showError(fieldWrapper) {
     if (fieldWrapper) fieldWrapper.classList.add('invalid');
@@ -224,6 +236,7 @@ function setupFormValidation() {
   }
 
   form.addEventListener('submit', function (event) {
+    event.preventDefault();
     const ids = ['full_name', 'email', 'phone'];
     let isValid = true;
 
@@ -234,7 +247,14 @@ function setupFormValidation() {
     });
 
     if (!isValid) {
-      event.preventDefault();
+      return;
+    }
+
+    if (notice && noticeMessage) {
+      const name = document.getElementById('full_name').value.trim();
+      noticeMessage.textContent = 'Thank you, ' + name + '! Your details have been confirmed.';
+      notice.hidden = false;
+      if (closeNoticeButton) closeNoticeButton.focus();
     }
   });
 
