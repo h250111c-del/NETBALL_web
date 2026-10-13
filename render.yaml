@@ -4,3 +4,10 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
+    disk:
+      name: dolphin-netball-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: SQLITE_PATH
+        value: /var/data/dolphin_netball.sqlite
