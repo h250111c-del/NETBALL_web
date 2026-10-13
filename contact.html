@@ -29,11 +29,45 @@
             <h1 style="font-size: clamp(2.6rem,7vw,4.5rem);">Join Or <span>Contact Us</span></h1>
             <p class="lead">Whether you want to play netball, sponsor a fixture, or ask a question, we'd love to hear from you.</p>
         </section>
-        <section>
+        <section> 
             <div class="container">
-                <div class="club-form" role="status">
-                    <p>Online messages are not available yet. We do not receive submissions from this page. Please check back later for contact details.</p>
-                </div>
+                <form class="club-form" id="clubForm" method="POST" action="process_form.php">
+                    <div class="field" id="field-full_name">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" id="full_name" name="full_name" placeholder="e.g Merit Dunatuna" minlength="2" maxlength="50" required>
+                        <p class="error">Please Enter Your Full Name</p>
+
+                    </div>
+                    <div class="field" id=" field-email">
+                        <label for="email">email</label>
+                        <input type="email" id="email" name="email" placeholder="e.g me@example.com" required>
+                        <p class="error">Please Enter Your Email</p>
+
+                    </div>
+                    <div class="field" id="field-phone">
+                        <label for="phone">Phone Number<span style="font-weight: 400;">Optional</span></label>
+                        <input type="tel" id="phone" name="phone"placeholder="+263 7xxx xxx xx">
+                        <p class="error">That doesn't look like a valid phone number</p>
+
+                    </div>
+                    <div class="field" id="field-reason">
+                        <label for="reason">Reason for contacting us</label>
+                        <select name="reason" id="reason">
+                            <option value="Join">I want to join as a netballer
+                            </option>
+                            <option value="General Inquiry">General Enquiry</option>
+                            <option value="Sponsorship">Sponsorship/ Partnership</option>
+
+                        </select>
+
+                    </div>
+                    <div class="field">
+                        <label for="message">Message<span style="font-weight: 400;">Optional</span></label>
+                        <textarea id="message" name="message" rows="4" placeholder="anything else we should know"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send</button>
+                </form>
+
             </div>
         </section>
 
@@ -43,33 +77,32 @@
 
 
 
-        <footer class="site-footer">
+                <footer class="site-footer">
             <div class="container">
                 <div class="footer-grid">
-         </div>
-         <h4>Dolphin Netball Club</h4>
-         <p>We Train Netballers from beginner to champion</p>
+                    <div>
+                        <h4>Dolphin Netball Club</h4>
+                        <p>We train netballers from beginner to champion.</p>
+                    </div>
+                    <div>
+                        <h4>Get Involved</h4>
+                        <ul>
+                            <li><a href="contact.html">Join the club</a></li>
+                            <li><a href="contact.html">General enquiries</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Training Courts</h4>
+                        <ul>
+                            <li>Dolphin Netball Club</li>
+                            <li>Saturday, 11:00 am - 5:00 pm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    &copy; <span id="year"></span> Dolphin Netball Club. Built for ISE2102: Web Technologies by Merit Dunatuna.
+                </div>
             </div>
-            <div>
-                <h4>Get Involved</h4>
-             <ul>
-                <li><a href="contact.html">Join The Club</a></li>
-                  <li><a href="contact.html">General Enquires</a></li>
-             </ul>
-
-            </div>
-            <div>
-                <h4>Training Courts</h4>
-                <ul>
-                    <li>Dolphin Netball Club</li>
-                    <li>Sat &amp; 11:00-5:00pm</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy;<span id="year"></span>Dolphin Netball Club.Built for ISE2102:Web Technologies.by Merit Dunatuna
-        </div>
-    </div>
         </footer>
     <div class="lightbox" id="lightbox">
 <div class="lightbox-box">
@@ -79,6 +112,12 @@
     <p id="lightboxCaption"></p>
 </div>
     </div>
+        <div class="social-links">
+                    <a href="https://wa.me/263778969615">WhatsApp</a>
+                    <a href="mailto:meritdunatuna2@gmail.com">Email</a>
+                    <a href="tel:+263778969615">Phone</a>
+            
+                </div>
     <script src="Js/Js%20script.js"></script>
     </body>
 </html>

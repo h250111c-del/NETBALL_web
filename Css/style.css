@@ -168,10 +168,12 @@ textarea {
 }
 
 .lead {
+  display: block;
   max-width: 700px;
   font-size: 1.1rem;
   color: var(--muted);
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
+  text-align: center;
 }
 
 .hero-actions {
@@ -269,8 +271,17 @@ section {
   font-weight: 700;
 }
 
+.On-pitch,
 .on-pitch {
   background: rgba(255,255,255,0.01);
+  text-align: center;
+}
+
+.On-pitch .section-head,
+.on-pitch .section-head,
+.On-pitch .stat-strip,
+.on-pitch .stat-strip {
+  text-align: center;
 }
 
 .stat-strip {
@@ -306,6 +317,7 @@ section {
   background: #060d18;
   border-top: 1px solid var(--line);
   padding: 4rem 0 1.5rem;
+  text-align: center;
 }
 
 .footer-grid {
@@ -313,6 +325,8 @@ section {
   grid-template-columns: 1.2fr 1fr 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
+  text-align: center;
+  justify-items: center;
 }
 
 .site-footer h4 {
@@ -330,6 +344,7 @@ section {
   list-style: none;
   display: grid;
   gap: 0.6rem;
+  justify-items: center;
 }
 
 .footer-bottom {
@@ -337,6 +352,7 @@ section {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .gallery-grid {
@@ -471,6 +487,12 @@ section {
   min-height: 52px;
   padding: 0.95rem 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#field-reason select,
+#field-reason option {
+  color: #000;
+  background: #fff;
 }
 
 .field textarea {
