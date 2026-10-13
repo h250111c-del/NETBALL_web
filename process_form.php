@@ -1,7 +1,15 @@
 <?php
 require_once 'includes/db_connect.php';
-$status = '';
-$message = '';
+
+function redirectToContact(string $status, string $message): never
+{
+    $query = http_build_query([
+        'submission' => $status,
+        'message' => $message,
+    ]);
+    header('Location: contact.html?' . $query . '#formNotice', true, 303);
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name_input = $_POST['full_name'] ?? '';
@@ -75,57 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $status = 'error';
         $message = implode(' ', $errors);
     }
+    redirectToContact($status, $message);
 } else {
-    $status = 'error';
-    $message = 'Invalid request method.';
+    header('Location: contact.html', true, 303);
+    exit;
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form Result | Dolphin Netball Club</title>
-    <link rel="stylesheet" href="Css/styles.css">
-    </head>
-    <body>
-        <header class="site-header">
-            <nav class="nav">
-                <a href="home.html" class="brand">
-                    Dolphin Netball Club
-                </a>
-                <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false"><span class="nav-toggle-bar" aria-hidden="true"></span><span class="nav-toggle-bar" aria-hidden="true"></span><span class="nav-toggle-bar" aria-hidden="true"></span></button>
-                <ul  class="nav-links" id="navLinks">
-                    <li> <a href="home.html"class="active">Home</a></li>
-                    <li> <a href="about.html">about us</a></li>
-                    <li> <a href="activities.html">activities/events</a></li>
-                    <li> <a href="gallery.html">gallery</a></li>
-                    <li> <a href="contact.html">contact us</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <section style="padding: 4rem 0;">
-            <div class="container" style="max-width: 620px;">
-               <div class="form-note <?php echo $status === 'success' ? 'success' : 'form-error'; ?>" role="status" aria-live="polite">
-                    <?php echo htmlspecialchars($message, ENT_QUOTES, 'UTF-8'); ?>
-               </div>
-
-               <p style="text-align: center;">
-                <a href="contact.html" class="btn btn-ghost">Back to Contact Form</a>
-                <a href="index.html" class="btn btn-primary">Back to Home</a>
-                </p>
-            </div>
-        </section>
-
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-bottom">
-                    &copy; <?php echo date("Y"); ?> Dolphin Netball Club.
-                </div>
-            </div>
-        </footer>
-
-        <script src="Js/script.js"></script>
-        </body>
-         </html>

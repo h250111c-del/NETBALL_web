@@ -179,6 +179,17 @@ function setupFormValidation() {
   const form = document.getElementById('clubForm');
   if (!form) return;
 
+  const notice = document.getElementById('formNotice');
+  const params = new URLSearchParams(window.location.search);
+  const submissionStatus = params.get('submission');
+  const submissionMessage = params.get('message');
+  if (notice && submissionMessage && (submissionStatus === 'success' || submissionStatus === 'error')) {
+    notice.textContent = submissionMessage;
+    notice.classList.add(submissionStatus === 'success' ? 'success' : 'form-error');
+    notice.hidden = false;
+    window.history.replaceState(null, '', window.location.pathname + '#formNotice');
+  }
+
   function showError(fieldWrapper) {
     if (fieldWrapper) fieldWrapper.classList.add('invalid');
   }
