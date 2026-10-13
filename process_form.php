@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $reason_values = [
         'join' => 'Join',
         'i want to join as a netballer' => 'Join',
-        'i want to join as a swimmer' => 'Join',
         'general inquiry' => 'General Inquiry',
         'general enquiry' => 'General Inquiry',
         'general_enquiry' => 'General Inquiry',
